@@ -17,13 +17,13 @@ import cookie from 'cookie';
 import { IncomingMessage } from 'http';
 import { isBrowser } from './isBrowser';
 
-export const APOLLO_STATE_PROP_NAME: string = '__APOLLO_STATE__';
 
 interface PageProps {
   props?: Record<string, any>;
+  [APOLLO_STATE_PROP_NAME: string]: any
 }
 
-export const APOLLO_STATE_PROPERTY_NAME = '__APOLLO_STATE__';
+export const APOLLO_STATE_PROP_NAME: string = '__APOLLO_STATE__';
 export const COOKIES_TOKEN_NAME = 'jwt';
 
 const getToken = (req?: IncomingMessage) => {
@@ -128,7 +128,7 @@ export function addApolloState(
 
 // @ts-ignore
 export function useApollo(pageProps: PageProps) {
-  const state = pageProps.props![APOLLO_STATE_PROP_NAME];
+  const state = pageProps[APOLLO_STATE_PROP_NAME];
   const store = useMemo(() => initializeApollo(state), [state]);
   return store;
 }
