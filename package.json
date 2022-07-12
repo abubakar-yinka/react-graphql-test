@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "components": "^0.1.0",
     "cookie": "^0.5.0",
     "deepmerge": "^4.2.2",
     "graphql": "^16.5.0",
@@ -15,11 +16,15 @@
     "lodash": "^4.17.21",
     "next": "latest",
     "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled": "^1.0.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.8.0",
     "@types/cookie": "^0.5.1",
+    "@types/graphql": "^14.5.0",
     "@types/lodash": "^4.14.182",
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
