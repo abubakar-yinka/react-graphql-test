@@ -17,10 +17,9 @@ import cookie from 'cookie';
 import { IncomingMessage } from 'http';
 import { isBrowser } from './isBrowser';
 
-
 interface PageProps {
   props?: Record<string, any>;
-  [APOLLO_STATE_PROP_NAME: string]: any
+  [APOLLO_STATE_PROP_NAME: string]: any;
 }
 
 export const APOLLO_STATE_PROP_NAME: string = '__APOLLO_STATE__';
@@ -45,17 +44,20 @@ const errorLink: ApolloLink = onError(({ graphQLErrors, networkError }) => {
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
       ),
     );
-  if (networkError) console.log(`[Network error]: ${networkError}`);
+  if (networkError)
+    console.log(
+      `[Network error]: ${networkError}. Backend is unreachable, is it running?`,
+    );
 });
 
 const httpLink: HttpLink = new HttpLink({
-  uri: 'https://nextjs-graphql-with-prisma-simple.vercel.app/api', // Server URL (must be absolute) process.env.NEXT_PUBLIC_GRAPHQL_URI
+  uri: 'https://api.spacex.land/graphql', // Server URL (must be absolute) process.env.NEXT_PUBLIC_GRAPHQL_URI
   credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
   //  uri: "http://localhost:4000/graphql",
   //  credentials: "include"
 });
 
-function createApolloClient(ctx?: GetServerSidePropsContext) {
+function createApolloClient(ctx?: GetServerSidePropsContext, initialState = null) {
   const authLink: ApolloLink = setContext((_, { headers }) => {
     // Get the authentication token from cookies
     const token = getToken(ctx?.req);
@@ -80,7 +82,7 @@ function createApolloClient(ctx?: GetServerSidePropsContext) {
           },
         },
       },
-    }),
+    }).restore(initialState || {}),
   });
 }
 
