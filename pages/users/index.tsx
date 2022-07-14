@@ -1,37 +1,37 @@
-import { GetStaticProps } from 'next'
-import Link from 'next/link'
+import { useQuery } from '@apollo/client';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import List from '../../components/List';
+import Pagination from '../../components/Pagination';
+import { TextInput } from '../../components/Search';
+import { ALL_USERS_QUERY } from '../../graphql/queries/user';
+import { LIMIT } from '../../utils/helper';
 
-import { User } from '../../interfaces'
-import { sampleUserData } from '../../utils/sample-data'
-import Layout from '../../components/Layout'
-import List from '../../components/List'
+const UsersPage = () => {
+  const { query } = useRouter();
+  const page = parseInt(query.page as string) || 1;
+  const { data, error, loading } = useQuery(ALL_USERS_QUERY, {
+    variables: {
+      limit: LIMIT,
+      offset: (page - 1) * LIMIT,
+    },
+  });
 
-type Props = {
-  items: User[]
-}
+  return (
+    <Wrapper>
+      <TextInput placeholder="Search..." />
+      <h1>Space X Users 🚀 + Date of account creation</h1>
+      <Pagination page={page} />
+      <List loading={loading} error={error} data={data} />
+      <Pagination page={page} />
+    </Wrapper>
+  );
+};
 
-const WithStaticProps = ({ items }: Props) => (
-  <Layout title="Users List | Next.js + TypeScript Example">
-    <h1>Users List</h1>
-    <p>
-      Example fetching data from inside <code>getStaticProps()</code>.
-    </p>
-    <p>You are currently on: /users</p>
-    <List items={items} />
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
-  </Layout>
-)
+export default UsersPage;
 
-export const getStaticProps: GetStaticProps = async () => {
-  // Example for including static props in a Next.js function component page.
-  // Don't forget to include the respective types for any props passed into
-  // the component.
-  const items: User[] = sampleUserData
-  return { props: { items } }
-}
-
-export default WithStaticProps
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
