@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import List from '../../components/List';
 import Pagination from '../../components/Pagination';
-import { TextInput } from '../../components/Search';
+import { TextInput } from '../../components/SearchBox';
 import { ALL_USERS_QUERY } from '../../graphql/queries/user';
 import { LIMIT } from '../../utils/helper';
 
