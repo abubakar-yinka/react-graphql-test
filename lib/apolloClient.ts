@@ -78,7 +78,7 @@ function createApolloClient(ctx?: GetServerSidePropsContext, initialState = null
       typePolicies: {
         Query: {
           fields: {
-            allPosts: concatPagination(),
+            users: concatPagination(),
           },
         },
       },
