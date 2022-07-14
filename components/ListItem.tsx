@@ -1,18 +1,16 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
 
-import { User } from '../interfaces'
+import { User } from '../interfaces';
+import ItemStyles from './styles/ItemStyles';
 
 type Props = {
-  data: User
-}
+  data: User;
+};
 
 const ListItem = ({ data }: Props) => (
-  <Link href="/users/[id]" as={`/users/${data.id}`}>
-    <a>
-      {data.id}: {data.name}
-    </a>
-  </Link>
-)
+  <ItemStyles>
+    <p>{data.name && data.name !== '' ? data.name : 'Fallback Name'}</p>
+  </ItemStyles>
+);
 
-export default ListItem
+export default ListItem;
