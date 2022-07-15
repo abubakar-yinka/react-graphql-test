@@ -1,6 +1,7 @@
 # React + GraphQL Challenge
 
 Implementation a simple app that shows a view of a mock SpaceX dataset grouped by their date of creation and can be searched through with a search box.
+![image](https://user-images.githubusercontent.com/64968306/179146478-2cef6da9-952f-48a3-a638-052245c526b6.png)
 
 ## Technology Used
 
