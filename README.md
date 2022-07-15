@@ -1,43 +1,20 @@
-# TypeScript Next.js example
+# React + GraphQL Challenge
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+Implementation a simple app that shows a view of a mock SpaceX dataset grouped by their date of creation and can be searched through with a search box.
 
-## Deploy your own
+## Technology Used
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript)
+- React: Next.js for server side rendering, routing and tooling
+- GraphQL: 
+    - Apollo's React Hooks for interfacing with Apollo Client
+    - Fetching data via GraphQL Queries
+    - Caching GraphQL Data
+    - Error and Loading UI States
+- TypeScript: For static typing, type inference, IntelliSense support
+- Styled Components: for dynamic styling and avoiding className bugs.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+## User Experience
 
-## How to use it?
+The choice of technology is appropriate for this project. By using a type-safe query language for communicating with our database, we eliminate bugs that come with the conventional approach to APIs and also gives us the flexibility of requesting the specific data that we need at that particular point in time. Apollo Client also replaces the need for redux + data fetching/caching libraries. I decided to use Nextjs over React for better performance and enhanced UX due to server side rendering and code-splitting, which enhanced my development process.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-# or
-yarn create next-app --example with-typescript with-typescript-app
-# or
-pnpm create next-app --example with-typescript with-typescript-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-## Notes
-
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
-
-```
-npm install --save-dev typescript
-```
-
-To enable TypeScript's features, we install the type declarations for React and Node.
-
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
-
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
-
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
-
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+It could have been made better by giving the users more control over the filtering of data for them to easily get the result of their choice especially as the dataset gets larger. It could have also been tabulated for a better presentation of the results and detailed representation of each row with the option of viewing a particular row.
