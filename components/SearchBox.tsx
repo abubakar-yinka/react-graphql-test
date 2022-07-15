@@ -82,6 +82,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           {isOpen && !items.length && !loading && (
             <DropDownItem>Sorry, No items found for {inputValue}</DropDownItem>
           )}
+          {isOpen && !items.length && !loading && error && (
+            <DropDownItem>{error.message}</DropDownItem>
+          )}
         </DropDown>
       </Wrapper>
     );
