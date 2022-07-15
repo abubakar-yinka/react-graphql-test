@@ -14,6 +14,7 @@ const DropDownItem = styled.div<{ highlighted?: boolean }>`
   transition: all 0.2s;
   ${(props) => (props.highlighted ? 'padding-left: 2rem;' : null)};
   display: flex;
+  cursor: pointer;
   align-items: center;
   border-left: 10px solid
     ${(props) => (props.highlighted ? props.theme.lightgrey : 'white')};
