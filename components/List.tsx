@@ -3,6 +3,7 @@ import ListItem from './ListItem';
 import { User } from '../interfaces';
 import styled from 'styled-components';
 import DateCard from './DateCard';
+import { useRouter } from 'next/router';
 
 interface UserResponse {
   users: User[];
@@ -22,9 +23,11 @@ const ListStyles = styled.div`
 
 const Wrapper = styled.div`
   display: block;
+  cursor: pointer;
 `;
 
 const List = ({ data, loading, error }: Props) => {
+  const router = useRouter();
   const getDay = (date: string) => date.substr(8, 2);
   const getMonth = (date: string) => Number(date.substr(5, 2)) - 1;
   const getYear = (date: string) => date.substr(0, 4);
@@ -34,7 +37,14 @@ const List = ({ data, loading, error }: Props) => {
   return (
     <ListStyles>
       {data.users.map((item) => (
-        <Wrapper key={item.id}>
+        <Wrapper
+          onClick={() => {
+            router.push({
+              pathname: `/user/${item.id}`,
+            });
+          }}
+          key={item.id}
+        >
           <DateCard
             day={getDay(item.timestamp)}
             month={getMonth(item.timestamp)}
